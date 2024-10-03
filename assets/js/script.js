@@ -275,3 +275,18 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(() => autoScroll(testimonialsContainer), scrollSpeed);
   setInterval(() => autoScroll(clientsContainer), scrollSpeed);
 });
+(function() {
+  emailjs.init("W2-ZCa7l8Y_Bw-pDh5xh2"); // Your Public Key
+})();
+
+document.querySelector('.form').addEventListener('submit', function(event) {
+  event.preventDefault();
+
+  emailjs.sendForm('service_z5ym8o8', 'template_knsngdi', this)
+      .then(function() {
+          alert('Message sent successfully!');
+          document.querySelector('.form').reset(); // Reset form fields
+      }, function(error) {
+          alert('Failed to send message. Error: ' + JSON.stringify(error));
+      });
+});
